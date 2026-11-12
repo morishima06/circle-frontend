@@ -27,12 +27,16 @@ export type Color = {
   slug: string;
 };
 
-export type Collection = {
-  products: Product[];
-  heading: string;
+export type CollectionFilters = {
   categories: Category[];
   designers: Designer[];
   colors: Color[];
+};
+
+export type Collection = {
+  products: Product[];
+  heading: string;
+  filters: CollectionFilters;
   pagination: Pagination;
   error?: string;
 };
