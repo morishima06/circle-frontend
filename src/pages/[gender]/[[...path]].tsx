@@ -18,12 +18,16 @@ const EMPTY_PAGINATION: Pagination = {
   perPage: 8,
 };
 
+const EMPTY_FILTERS = {
+  categories: [],
+  designers: [],
+  colors: [],
+};
+
 const CollectionPage = ({
   products,
   heading,
-  categories,
-  designers,
-  colors,
+  filters,
   pagination,
   error,
 }: CollectionPageProps) => {
@@ -37,13 +41,22 @@ const CollectionPage = ({
         &quot;{heading}&quot;
       </h1>
 
-      <CollectionLayout
-        left={<FilterSidebar categories={categories} designers={designers} />}
-        content={
-          <CollectionContent products={products} pagination={pagination} />
-        }
-        right={<FilterPanel colors={colors} />}
-      />
+      {products.length === 0 ? (
+        <div className="py-20 text-center">
+          <p className="text-lg font-medium">商品が見つかりませんでした。</p>
+          <p className="mt-3 text-sm text-gray-500">
+            条件を変更して、もう一度お試しください。
+          </p>
+        </div>
+      ) : (
+        <CollectionLayout
+          left={<FilterSidebar filters={filters} />}
+          content={
+            <CollectionContent products={products} pagination={pagination} />
+          }
+          right={<FilterPanel colors={filters.colors} />}
+        />
+      )}
     </div>
   );
 };
@@ -101,9 +114,11 @@ export const getServerSideProps: GetServerSideProps<
       props: {
         products: data.products ?? [],
         heading: data.heading ?? "",
-        categories: data.categories ?? [],
-        designers: data.designers ?? [],
-        colors: data.colors ?? [],
+        filters: {
+          categories: data.filters?.categories ?? [],
+          designers: data.filters?.designers ?? [],
+          colors: data.filters?.colors ?? [],
+        },
         pagination: data.pagination ?? EMPTY_PAGINATION,
       },
     };
@@ -119,9 +134,7 @@ export const getServerSideProps: GetServerSideProps<
       props: {
         products: [],
         heading: "",
-        categories: [],
-        designers: [],
-        colors: [],
+        filters: EMPTY_FILTERS,
         pagination: EMPTY_PAGINATION,
         error: message,
       },
