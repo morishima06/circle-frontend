@@ -18,10 +18,10 @@ const CheckboxField = <T extends FieldValues>({
         type="checkbox"
         {...register(name)}
         className="mr-2 h-4 w-4"
-      />{" "}
+      />
       <label className="py-1 text-sm" htmlFor={name}>
-        {label}{" "}
-      </label>{" "}
+        {label}
+      </label>
     </div>
   );
 };

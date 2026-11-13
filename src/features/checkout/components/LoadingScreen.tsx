@@ -10,7 +10,7 @@ export const LoadingScreen = ({ message }: Props) => {
       <Loader size="md" />
       {message && (
         <p className="mt-4 text-center text-sm font-bold">{message}</p>
-      )}{" "}
+      )}
     </div>
   );
 };
