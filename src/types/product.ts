@@ -14,6 +14,10 @@ export type ProductDetail = {
   images: string[];
 };
 
+export type ProductResponse = {
+  product: ProductDetail;
+};
+
 export type Spec = {
   id: number;
   key: string;
