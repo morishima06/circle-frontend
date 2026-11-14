@@ -161,7 +161,7 @@ const AdminOrderDetailPage = () => {
               ? formatDate(order.shipment.shippedAt)
               : "未発送"
           }
-        />{" "}
+        />
         {order.notes && <Row label="備考" value={order.notes} />}
       </Section>
 
