@@ -121,7 +121,7 @@ export const CategoryFilter = ({ categories }: Props) => {
           <ul className="mt-1 ml-4 list-none">
             {cat.children?.map((child) => renderCategory(child))}
           </ul>
-        )}{" "}
+        )}
       </li>
     );
   };
@@ -147,14 +147,13 @@ export const CategoryFilter = ({ categories }: Props) => {
 
   return (
     <div className="mb-4 text-xs">
-      {" "}
       <h2 className="mb-2">
         <Link
           href={allCategoriesLink}
           className={!categorySlug ? "font-bold underline" : ""}
         >
-          カテゴリー{" "}
-        </Link>{" "}
+          カテゴリー
+        </Link>
       </h2>
       <ul className="list-none">
         {categories.map((cat) => renderCategory(cat))}
