@@ -90,7 +90,7 @@ export const ProductActions = ({ product }: { product: ProductDetail }) => {
         <div className="shrink-0">
           <FavoriteButton productId={product.id} />
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };
