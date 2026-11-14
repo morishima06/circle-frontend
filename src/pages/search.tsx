@@ -1,8 +1,10 @@
+import type { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { GetServerSideProps } from "next";
 import type { ReactNode } from "react";
-
+import { ProductImage } from "@/features/collections/components/ProductImage";
+import { searchProducts } from "@/api/search";
+import { StoreLayout } from "@/components/layout/store/StoreLayout";
 import {
   Select,
   SelectContent,
@@ -10,11 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-
-import { searchProducts } from "@/api/search";
-import type { SearchProduct } from "@/types/search";
-import { StoreLayout } from "@/components/layout/store/StoreLayout";
 import { EmptySearchResults } from "@/features/search/EmptySearchResul";
+import type { SearchProduct } from "@/types/search";
 
 type SearchPageProps = {
   products: SearchProduct[];
@@ -87,19 +86,13 @@ export default function SearchPage({ products, q, sort }: SearchPageProps) {
                 <li key={product.id}>
                   {/* 商品画像 */}
                   <Link href={productUrl} className="block">
-                    {product.imageUrl ? (
-                      <img
-                        src={product.imageUrl}
+                    <div className="relative aspect-[4/5]">
+                      <ProductImage
+                        imgUrl={product.imageUrl}
                         alt={product.name}
-                        className="aspect-[4/5] w-full object-cover"
                       />
-                    ) : (
-                      <div className="flex aspect-[4/5] w-full items-center justify-center bg-gray-100 text-sm text-gray-500">
-                        画像なし
-                      </div>
-                    )}
+                    </div>
                   </Link>
-
                   {/* デザイナー名 */}
                   <p className="mt-3 text-sm text-gray-500">
                     <Link
