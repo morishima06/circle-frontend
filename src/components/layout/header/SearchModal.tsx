@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { TfiClose } from "react-icons/tfi";
 import { IoSearchOutline } from "react-icons/io5";
+import { TfiClose } from "react-icons/tfi";
 
 import { useDesignerSuggestions } from "@/features/designers/hooks/useDesignerSuggestions";
 import type { Designer } from "@/types/designer";
