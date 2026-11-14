@@ -21,10 +21,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   };
 
   try {
-    const product = await getProduct(gender, designer, styleCode);
+    const response = await getProduct(gender, designer, styleCode);
 
     return {
-      props: { product },
+      props: {
+        product: response.product,
+      },
     };
   } catch (error: unknown) {
     if (
@@ -44,6 +46,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 
 const ProductPage = ({ product }: Props) => {
   console.log(product);
+  console.log("product.images:", product.images);
 
   return (
     <div className="mt-12 grid grid-cols-[1fr_380px] gap-8 px-8">
