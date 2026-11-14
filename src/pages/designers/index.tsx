@@ -57,12 +57,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 const DesignersPage = ({ designersByInitial }: Props) => {
   return (
     <div className="mt-12 flex items-center justify-center scroll-smooth px-2">
-      {" "}
       <div className="max-w-6xl">
-        {" "}
         <div className="mb-8 flex w-full max-w-6xl items-start">
-          {" "}
-          <h1 className="text-sm font-semibold">BRANDS</h1>{" "}
+          <h1 className="text-sm font-semibold">BRANDS</h1>
         </div>
         <DesignerNavigation
           initials={INITIALS}
