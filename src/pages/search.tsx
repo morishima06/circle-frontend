@@ -2,7 +2,7 @@ import type { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
-import { ProductImage } from "@/features/collections/components/ProductImage";
+
 import { searchProducts } from "@/api/search";
 import { StoreLayout } from "@/components/layout/store/StoreLayout";
 import {
@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
+import { ProductImage } from "@/features/collections/components/ProductImage";
 import { EmptySearchResults } from "@/features/search/EmptySearchResul";
 import type { SearchProduct } from "@/types/search";
 
