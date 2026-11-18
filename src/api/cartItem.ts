@@ -7,7 +7,7 @@ export const addCartItem = ({
   skuId: number;
   quantity: number;
 }) => {
-  return client.post("/cart_items", {
+  return client.post("/api/v1/cart_items", {
     sku_id: skuId,
     quantity,
   });
@@ -20,9 +20,9 @@ export const updateCartItem = ({
   skuId: number;
   quantity: number;
 }) => {
-  return client.patch(`cart_items/${skuId}`, { quantity });
+  return client.patch(`/api/v1/cart_items/${skuId}`, { quantity });
 };
 
 export const destroyCartItem = (skuId: number) => {
-  return client.delete(`cart_items/${skuId}`);
+  return client.delete(`/api/v1cart_items/${skuId}`);
 };

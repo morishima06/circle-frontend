@@ -2,11 +2,11 @@ import type { OtpVerifyData } from "@/features/customers/auth/schemas/otpVerifyS
 import client from "@/lib/api/client";
 
 export const verifyCustomerSession = () => {
-  return client.get("/customers/two_factor");
+  return client.get("/api/v1/customers/two_factor");
 };
 
 export const verifyCustomerOtp = (data: OtpVerifyData) => {
-  return client.patch("/customers/two_factor/verify_otp", {
+  return client.patch("/api/v1/customers/two_factor/verify_otp", {
     otp: data.otp,
   });
 };

@@ -6,7 +6,7 @@ type SearchProductsParams = {
 };
 
 export const searchProducts = async ({ q, sort }: SearchProductsParams) => {
-  const res = await client.get("/search", {
+  const res = await client.get("/api/v1/search", {
     params: { q, sort },
   });
 

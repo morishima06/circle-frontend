@@ -8,7 +8,7 @@ export const getProduct = async (
   designer: string,
   styleCode: string,
 ): Promise<ProductResponse> => {
-  const res = await client.get(`/${gender}/p/${designer}/${styleCode}`);
+  const res = await client.get(`/api/v1/${gender}/p/${designer}/${styleCode}`);
   console.log(res);
   return res.data;
 };

@@ -2,7 +2,7 @@ import type { RegisterData } from "@/features/customers/auth/schemas/registerSch
 import client from "@/lib/api/client";
 
 export const registerCustomer = (data: RegisterData) => {
-  return client.post("/customers/register", {
+  return client.post("/api/v1/customers/register", {
     customer: {
       lastName: data.lastName,
       firstName: data.firstName,

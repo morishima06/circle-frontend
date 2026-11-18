@@ -6,5 +6,5 @@ type ProfileUpdateParams = {
 };
 
 export const profileUpdate = (data: ProfileUpdateParams) => {
-  return client.patch("/customers/profile", data);
+  return client.patch("/api/v1/customers/profile", data);
 };

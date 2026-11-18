@@ -5,7 +5,7 @@ import type { OrderComplete } from "@/types/order";
 
 // 注文作成
 export const createOrder = async (): Promise<Order> => {
-  const res = await client.post("/orders");
+  const res = await client.post("/api/v1/orders");
 
   return res.data;
 };
@@ -18,7 +18,7 @@ export type CheckoutOrderData =
     };
 
 export const updateOrder = async (data: CheckoutOrderData): Promise<Order> => {
-  const res = await client.patch("/order", {
+  const res = await client.patch("/api/v1/order", {
     order: data,
   });
 
@@ -29,7 +29,7 @@ export const updateOrder = async (data: CheckoutOrderData): Promise<Order> => {
 export const getOrderCompleteInfo = async (
   token: string,
 ): Promise<OrderComplete> => {
-  const res = await client.get<OrderComplete>("/orders/complete", {
+  const res = await client.get<OrderComplete>("/api/v1/orders/complete", {
     params: { token },
   });
 

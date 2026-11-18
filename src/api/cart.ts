@@ -4,11 +4,11 @@ import type { CartItemCount } from "@/types/cart";
 
 // カート取得
 export const getCart = async (): Promise<Cart> => {
-  const res = await client.get("/cart");
+  const res = await client.get("/api/v1/cart");
   return res.data;
 };
 
 export const getCartItemCount = async (): Promise<CartItemCount> => {
-  const res = await client.get("/cart_item_count");
+  const res = await client.get("/api/v1/cart_item_count");
   return res.data;
 };

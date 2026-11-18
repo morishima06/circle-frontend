@@ -5,7 +5,7 @@ import type { ProductParams, ProductResponse } from "@/types/admin/product";
 export const getProducts = async (
   params?: ProductParams,
 ): Promise<ProductResponse> => {
-  const res = await client.get("/admin/products", {
+  const res = await client.get("/api/v1/admin/products", {
     params,
   });
 

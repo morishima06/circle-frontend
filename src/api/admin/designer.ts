@@ -3,7 +3,7 @@ import client from "@/lib/api/client";
 import type { Designer } from "@/types/admin/designer";
 
 export const searchDesigners = async (query: string): Promise<Designer[]> => {
-  const { data } = await client.get("/admin/designers/search", {
+  const { data } = await client.get("/api/v1/admin/designers/search", {
     params: { q: query },
   });
 
@@ -11,6 +11,6 @@ export const searchDesigners = async (query: string): Promise<Designer[]> => {
 };
 
 export const getDesigners = async () => {
-  const res = await client.get("admin/designers");
+  const res = await client.get("/api/v1/admin/designers");
   return res.data;
 };

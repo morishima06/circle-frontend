@@ -3,7 +3,7 @@ import type { Order, OrderDetail } from "@/types/customer/order";
 
 // 注文一覧取得
 export const getCustomerOrders = async (): Promise<Order[]> => {
-  const res = await client.get("customers/orders");
+  const res = await client.get("/api/v1/customers/orders");
 
   return res.data;
 };
@@ -12,7 +12,7 @@ export const getCustomerOrders = async (): Promise<Order[]> => {
 export const getCustomerOrderDetail = async (
   orderNumber: string,
 ): Promise<OrderDetail> => {
-  const res = await client.get(`customers/orders/${orderNumber}`);
+  const res = await client.get(`/api/v1/customers/orders/${orderNumber}`);
 
   return res.data;
 };

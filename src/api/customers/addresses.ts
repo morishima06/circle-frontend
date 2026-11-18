@@ -4,18 +4,18 @@ import type { Address } from "@/types/customer/address";
 
 // 一覧
 export const getAddresses = async (): Promise<Address[]> => {
-  const { data } = await client.get("/customers/addresses");
+  const { data } = await client.get("/api/v1/customers/addresses");
   return data;
 };
 
 export const getAddress = async (id: string): Promise<Address> => {
-  const { data } = await client.get(`/customers/addresses/${id}`);
+  const { data } = await client.get(`/api/v1/customers/addresses/${id}`);
   return data;
 };
 
 // 作成
 export const createAddress = async (data: AccountAddressData) => {
-  const res = await client.post("/customers/addresses", data);
+  const res = await client.post("/api/v1/customers/addresses", data);
   return res.data;
 };
 
@@ -24,10 +24,10 @@ export const updateAddress = async (
   addressId: string,
   data: AccountAddressData,
 ) => {
-  await client.patch(`/customers/addresses/${addressId}`, data);
+  await client.patch(`/api/v1/customers/addresses/${addressId}`, data);
 };
 // 削除
 export const deleteAddress = async (id: number) => {
-  const res = await client.delete(`/customers/addresses/${id}`);
+  const res = await client.delete(`/api/v1/customers/addresses/${id}`);
   return res.data;
 };

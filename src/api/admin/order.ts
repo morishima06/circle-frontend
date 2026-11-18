@@ -11,7 +11,7 @@ import { OrderDetail } from "@/types/admin/order";
 export const getOrders = async (
   params?: OrderParams,
 ): Promise<OrdersResponse> => {
-  const res = await client.get("/admin/orders", {
+  const res = await client.get("/api/v1/admin/orders", {
     params,
   });
 
@@ -19,13 +19,13 @@ export const getOrders = async (
 };
 
 export const getOrderDetail = async (orderId: number): Promise<OrderDetail> => {
-  const res = await client.get<OrderDetail>(`/admin/orders/${orderId}`);
+  const res = await client.get<OrderDetail>(`/api/v1/admin/orders/${orderId}`);
 
   return res.data;
 };
 
 export const getOrderCounts = async (): Promise<OrderCounts> => {
-  const res = await client.get<OrderCounts>("/admin/orders/counts");
+  const res = await client.get<OrderCounts>("/api/v1/admin/orders/counts");
 
   return res.data;
 };
@@ -33,5 +33,5 @@ export const getOrderCounts = async (): Promise<OrderCounts> => {
 export const shipOrder = async (params: ShipOrderParams): Promise<void> => {
   const { orderId, ...body } = params;
 
-  await client.patch(`/admin/orders/${orderId}/ship`, body);
+  await client.patch(`/api/v1/admin/orders/${orderId}/ship`, body);
 };
