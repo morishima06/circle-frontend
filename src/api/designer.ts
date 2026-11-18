@@ -2,7 +2,7 @@ import client from "@/lib/api/client";
 import type { Designer, DesignersData } from "@/types/designer";
 
 export const fetchDesigners = async (): Promise<DesignersData> => {
-  const res = await client.get<DesignersData>("/designers");
+  const res = await client.get<DesignersData>("/api/v1/designers");
 
   return res.data;
 };
@@ -10,7 +10,7 @@ export const fetchDesigners = async (): Promise<DesignersData> => {
 export const searchDesignerSuggestions = async (
   query: string,
 ): Promise<Designer[]> => {
-  const res = await client.get<Designer[]>("/designers/suggestions", {
+  const res = await client.get<Designer[]>("/api/v1/designers/suggestions", {
     params: { q: query },
   });
 
