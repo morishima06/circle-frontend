@@ -37,7 +37,7 @@ const CollectionPage = ({
 
   return (
     <div>
-      <h1 className="flex w-full justify-center gap-2 pb-12 pt-12 text-xl font-medium tracking-wider">
+      <h1 className="flex w-full justify-center gap-2 pt-12 pb-12 text-xl font-medium tracking-wider">
         &quot;{heading}&quot;
       </h1>
 
@@ -105,10 +105,10 @@ export const getServerSideProps: GetServerSideProps<
   });
 
   const search = queryString.toString();
-  const url = search ? `/${path}?${search}` : `/${path}`;
+  const collectionPath = search ? `${path}?${search}` : path;
 
   try {
-    const data = await getCollection(url);
+    const data = await getCollection(collectionPath);
 
     return {
       props: {
