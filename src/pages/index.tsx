@@ -16,6 +16,10 @@ const Home = () => {
         />
       </Head>
       <div className="px-12">
+        <img
+          src="https://circle-assets-208931561898-ap-northeast-1-an.s3.ap-northeast-1.amazonaws.com/products/acne_c90210_969_3.png"
+          alt="商品画像"
+        />
         <CategoryGrid />
         <DesignerList />
       </div>
