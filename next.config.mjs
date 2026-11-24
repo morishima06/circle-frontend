@@ -9,6 +9,11 @@ const nextConfig = {
         port: "5001",
         pathname: "/rails/active_storage/**",
       },
+      {
+        protocol: "https",
+        hostname: "circle-backend-7y1u.onrender.com",
+        pathname: "/rails/active_storage/**",
+      },
     ],
   },
 };
