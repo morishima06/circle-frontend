@@ -41,16 +41,23 @@ const getCsrfToken = (): string | undefined => {
 };
 
 // リクエストInterceptor
+// リクエストInterceptor
 client.interceptors.request.use((config) => {
   const method = config.method?.toLowerCase();
+
+  console.log("[CSRF] Interceptor executed");
+  console.log("[CSRF] Method:", method);
 
   if (["post", "patch", "put", "delete"].includes(method ?? "")) {
     const token = getCsrfToken();
 
+    console.log("[CSRF] Cookie token exists:", !!token);
+
     if (token) {
       config.headers.set("X-CSRF-Token", token);
-    } else if (process.env.NODE_ENV !== "production") {
-      console.warn("CSRF token not found");
+      console.log("[CSRF] Header set:", config.headers.has("X-CSRF-Token"));
+    } else {
+      console.warn("[CSRF] Cookie token not found");
     }
   }
 
