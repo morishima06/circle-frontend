@@ -1,4 +1,3 @@
-// client.js
 import axios from "axios";
 import applyCaseMiddleware from "axios-case-converter";
 import Router from "next/router";
@@ -8,6 +7,7 @@ const logError = (error: unknown): void => {
     console.error(error);
   }
 };
+
 const options = {
   ignoreHeaders: true,
 };
@@ -23,23 +23,41 @@ const client = applyCaseMiddleware(
   options,
 );
 
-const getCsrfToken = () => {
-  const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("CSRF-TOKEN="))
-    ?.split("=")[1];
+// CSRFトークンをCookieから取得
+const getCsrfToken = (): string | undefined => {
+  if (typeof document === "undefined") {
+    return undefined;
+  }
 
-  return token ? decodeURIComponent(token) : undefined;
+  const cookie = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("CSRF-TOKEN="));
+
+  if (!cookie) {
+    return undefined;
+  }
+
+  return decodeURIComponent(cookie.split("=").slice(1).join("="));
 };
 
+// リクエストInterceptor
 client.interceptors.request.use((config) => {
-  if (["post", "patch", "put", "delete"].includes(config.method ?? "")) {
+  const method = config.method?.toLowerCase();
+
+  if (["post", "patch", "put", "delete"].includes(method ?? "")) {
     const token = getCsrfToken();
-    config.headers.set("X-CSRF-Token", token);
+
+    if (token) {
+      config.headers.set("X-CSRF-Token", token);
+    } else if (process.env.NODE_ENV !== "production") {
+      console.warn("CSRF token not found");
+    }
   }
+
   return config;
 });
 
+// レスポンスInterceptor
 client.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -47,6 +65,7 @@ client.interceptors.response.use(
     const data = error.response?.data?.error;
 
     logError(error);
+
     if (status === 401) {
       Router.push("/login");
     }
@@ -59,4 +78,5 @@ client.interceptors.response.use(
     });
   },
 );
+
 export default client;
